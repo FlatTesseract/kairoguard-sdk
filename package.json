@@ -1,6 +1,6 @@
 {
   "name": "@kairoguard/sdk",
-  "version": "0.0.12",
+  "version": "0.0.16",
   "description": "Kairo SDK for multi-chain policy-based transaction signing with dWallet support (EVM, Bitcoin, Solana, Sui)",
   "license": "MIT",
   "author": "Kairo <mehraab@thewidercollective.com>",
