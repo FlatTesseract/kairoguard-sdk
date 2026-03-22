@@ -1,7 +1,7 @@
 # Kairo
 
 [![npm version](https://img.shields.io/npm/v/@kairoguard/sdk)](https://www.npmjs.com/package/@kairoguard/sdk)
-[![CI](https://github.com/FlatTesseract/kairo-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/FlatTesseract/kairo-sdk/actions/workflows/ci.yml)
+[![CI](https://github.com/FlatTesseract/kairoguard-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/FlatTesseract/kairoguard-sdk/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Kairo is a policy-enforced, multi-chain signing system for agentic and wallet applications.  

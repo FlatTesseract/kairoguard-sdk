@@ -7,10 +7,10 @@
   "homepage": "https://www.kairoguard.com/docs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlatTesseract/kairo-sdk.git"
+    "url": "git+https://github.com/FlatTesseract/kairoguard-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/FlatTesseract/kairo-sdk/issues"
+    "url": "https://github.com/FlatTesseract/kairoguard-sdk/issues"
   },
   "keywords": [
     "kairo",
