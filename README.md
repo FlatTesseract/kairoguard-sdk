@@ -1,101 +1,95 @@
-# `@kairoguard/sdk`
+# Kairo
 
 [![npm version](https://img.shields.io/npm/v/@kairoguard/sdk)](https://www.npmjs.com/package/@kairoguard/sdk)
 [![CI](https://github.com/FlatTesseract/kairo-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/FlatTesseract/kairo-sdk/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Kairo SDK helps agents and applications safely perform policy-aware onchain actions with multi-chain intent hashing, receipt minting on Sui, and dWallet lifecycle support.
+Kairo is a policy-enforced, multi-chain signing system for agentic and wallet applications.  
+This repository contains the SDK, core Sui Move contracts, and a stripped hackathon backend used for end-to-end demo verification.
 
-## Install
+## Project Structure
 
-```bash
-npm install @kairoguard/sdk
-```
+- `src/`: TypeScript SDK (`@kairoguard/sdk`)
+- `contracts/`: Sui Move packages (`kairo_policy_engine`, `kairo_governance`)
+- `backend/`: Hackathon edition backend (DKG, policy, vault, signing routes)
+- `examples/`: Runnable SDK examples
+- `docs/`: Architecture, custody, security, and flow docs
 
-## Why Kairo
+## How Kairo Works
 
-- Multi-chain transaction intent support for EVM, Bitcoin, and Solana
-- Sui policy receipt transaction builders for hard-gating flows
-- dWallet creation and signing workflow primitives for agent builders
-- CLI utilities for keystore and audit operations
-
-## Hero Example (EVM + Policy Receipt)
-
-```ts
-import {
-  KairoClient,
-  computeEvmIntentFromUnsignedTxBytes,
-  buildMintEvmReceiptTx,
-} from "@kairoguard/sdk";
-
-const client = new KairoClient({
-  apiKey: process.env.KAIRO_API_KEY!,
-  network: "testnet",
-});
-
-const wallet = await client.createWallet({
-  curve: "Secp256k1",
-  stableId: "demo-wallet",
-});
-
-const { intentHash } = computeEvmIntentFromUnsignedTxBytes({
-  chainId: 84532, // Base Sepolia
-  unsignedTxBytesHex: "0x...",
-});
-
-const receiptTx = buildMintEvmReceiptTx({
-  packageId: "0x...",
-  policyObjectId: "0x...",
-  evmChainId: 84532,
-  intentHash,
-  toEvm: "0x0000000000000000000000000000000000000000",
-});
-
-console.log(wallet.walletId, receiptTx);
-```
-
-More complete runnable examples are in [`examples/`](./examples).
-
-## Quick Start
-
-1. Create a `KairoClient` with your API key.
-2. Create or load a dWallet.
-3. Compute chain-specific intent and run your policy receipt flow.
+1. A client prepares transaction intent (EVM/BTC/Solana).
+2. Policy rules are evaluated and a policy receipt is minted on Sui.
+3. Signing requests pass through the PolicyVault, which consumes valid receipts.
+4. The backend coordinates DKG/presign/sign flows and returns signatures.
 
 ## Supported Chains
 
 | Chain | Status |
 | --- | --- |
 | EVM | Supported |
-| Bitcoin | Supported (intent utilities) |
-| Solana | Supported (intent utilities) |
-| Sui | Supported (receipt/policy tx builders) |
+| Bitcoin | Supported |
+| Solana | Supported |
+| Sui | Supported (policy, governance, custody, receipts) |
 
-## Open Source vs Managed Components
+## Quick Start
+
+### 1) SDK
+
+```bash
+npm install @kairoguard/sdk
+```
+
+```ts
+import { KairoClient } from "@kairoguard/sdk";
+
+const client = new KairoClient({
+  apiKey: process.env.KAIRO_API_KEY!,
+  network: "testnet",
+});
+```
+
+### 2) Backend (hackathon edition)
+
+```bash
+cd backend
+cp env.example .env
+bun install
+bun run src/index.ts
+```
+
+### 3) Contracts
+
+Contracts are in `contracts/kairo_policy_engine` and `contracts/kairo_governance`.
+
+## Open Source Boundary
 
 ### Open source in this repo
 
-- TypeScript SDK source
-- Public interfaces and helper utilities
-- Example integrations
+- SDK interfaces and client implementations
+- Sui Move policy/custody/governance modules
+- Core backend logic for demo flows
+- Reference docs and examples
 
-### Managed/private components
+### Not included here
 
-- Hosted backend services and relayer infrastructure
-- Managed indexing and operational cloud dependencies
+- Hosted production infrastructure and managed operations
+- Internal deployment assets and upgrade metadata
 
-## CLI Usage
-
-```bash
-# Audit a bundle
-npx @kairoguard/sdk kairo-audit audit <bundle-path>
-
-# List locally stored keys
-npx @kairoguard/sdk kairo list-keys
-```
-
-## Security and Support
+## Security
 
 - Vulnerability reporting: see [`SECURITY.md`](./SECURITY.md)
-- Contribution guide: see [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-- Docs: [www.kairoguard.com/docs](https://www.kairoguard.com/docs)
+- Threat model and architecture security notes: see [`docs/SECURITY.md`](./docs/SECURITY.md)
+
+## Documentation Index
+
+- [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)
+- [`docs/FLOWS.md`](./docs/FLOWS.md)
+- [`docs/POLICY_ENGINE.md`](./docs/POLICY_ENGINE.md)
+- [`docs/POLICY_VAULT.md`](./docs/POLICY_VAULT.md)
+- [`docs/CUSTODY.md`](./docs/CUSTODY.md)
+- [`docs/DATA_MODEL.md`](./docs/DATA_MODEL.md)
+- [`docs/RECOVERY.md`](./docs/RECOVERY.md)
+
+## License
+
+MIT

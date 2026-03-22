@@ -1,0 +1,11 @@
+[package]
+name = "kairo_governance"
+version = "0.0.1"
+edition = "2024"
+published-at = "0x24976d938792295976e09f684d352a25db06a2ed4b76076dd462da3e2f971b09"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+
+[addresses]
+kairo_governance = "0x24976d938792295976e09f684d352a25db06a2ed4b76076dd462da3e2f971b09"
