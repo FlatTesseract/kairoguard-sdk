@@ -1,0 +1,69 @@
+{
+  "name": "@kairoguard/sdk",
+  "version": "0.0.12",
+  "description": "Kairo SDK for multi-chain policy-based transaction signing with dWallet support (EVM, Bitcoin, Solana, Sui)",
+  "license": "MIT",
+  "author": "Kairo <mehraab@thewidercollective.com>",
+  "homepage": "https://www.kairoguard.com/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlatTesseract/kairo-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FlatTesseract/kairo-sdk/issues"
+  },
+  "keywords": [
+    "kairo",
+    "wallet",
+    "mpc",
+    "dkg",
+    "policy",
+    "evm",
+    "bitcoin",
+    "solana",
+    "sui",
+    "multichain",
+    "agent",
+    "dwallet"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "bin": {
+    "kairo": "./dist/cli.js",
+    "kairo-audit": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "@ika.xyz/sdk": "^0.2.7",
+    "@mysten/sui": "^1.44.0",
+    "@noble/hashes": "^1.7.2",
+    "viem": "^2.23.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.5"
+  }
+}
+

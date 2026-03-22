@@ -1,0 +1,14 @@
+{
+  "name": "kairo-sdk-example-evm-sign-with-policy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx index.ts"
+  },
+  "dependencies": {
+    "@kairoguard/sdk": "file:../.."
+  },
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  }
+}
