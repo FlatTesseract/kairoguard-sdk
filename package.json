@@ -56,7 +56,7 @@
     "provenance": true
   },
   "dependencies": {
-    "@ika.xyz/sdk": "^0.2.7",
+    "@ika.xyz/sdk": "^0.3.1",
     "@mysten/sui": "^1.44.0",
     "@noble/hashes": "^1.7.2",
     "viem": "^2.23.10"
